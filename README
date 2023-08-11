@@ -1,0 +1,24 @@
+glbdiff: diff the json in .glb files.
+
+Usage: glbdiff old_file new_file
+       glbdiff --textconv file            [textconv mode]
+       glbdiff --git ...                  [git mode]
+
+Integrating with git:
+
+    1. Add the following line to your .gitattributes:
+
+        *.glb diff=glbdiff
+
+    2. Add either of the following options to your git config:
+
+        [diff "glbdiff"]
+            textconv path/to/glbdiff.py --textconv
+
+        [diff "glbdiff"]
+            command path/to/glbdiff.py --git
+
+Using the 'textconv' option is recommended; it will allow git's own
+diff algorithms, colouring etc. to operate as usual; When using the
+'command' option, git will just display the output from glbdiff.py
+verbatim.
